@@ -3,20 +3,33 @@ var numberref=document.querySelector("#lucky-number")
 var checkbutton=document.querySelector("#check-button")
 var output_div=document.querySelector("#output-div")
 var clickhandler=()=>{
-  var inputdate=dateref.value;
-  var inputnumber=Number(numberref.value);
-  console.log(inputdate,inputnumber)
-  let sum=datetonumber(inputdate)
-   if(sum%inputnumber === 0)
-   {
-      output_div.style.color="white";
-      output_div.innerText="Your Favourite Number is Lucky Number"
-   }
-   else
-   {
+  if(dateref.value===''||numberref.value=='')
+  {
     output_div.style.color="red";
-    output_div.innerText="Your Favourite Number is not a Lucky Number !!"
-   }
+    output_div.innerText="Please Enter all fields !!";
+  }
+  else if(Number(numberref.value)<0)
+  {
+    output_div.style.color="red";
+    output_div.innerText="Please Choose a positive number !!"
+  }
+  else
+  {
+    var inputdate=dateref.value;
+    var inputnumber=Number(numberref.value);
+    console.log(inputdate,inputnumber)
+    let sum=datetonumber(inputdate)
+    if(sum%inputnumber === 0)
+    {
+        output_div.style.color="white";
+        output_div.innerText="Your Favourite Number is Lucky Number"
+    }
+    else
+    {
+      output_div.style.color="red";
+      output_div.innerText="Your Favourite Number is not a Lucky Number !!"
+    }
+  }
 }
 var datetonumber=(text)=>{
   var num=text.replaceAll("-","")
